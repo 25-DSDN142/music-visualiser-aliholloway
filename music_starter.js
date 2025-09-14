@@ -31,6 +31,18 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
     }
   }
 
+  star_line_radius *= 0.5;
+  for (let i = 0; i < num_star_cols; i++) {
+    for (let j = 0; j < num_star_rows; j++) {
+      for (let k = 0; k < num_star_lines; k++) {
+        angle = 360.0 / num_star_lines * k;
+        line(star_offset_x + star_col_space * 0.5 + (star_col_space * i), star_offset_y + star_row_space * 0.5 + (star_row_space * j), 
+             star_offset_x + star_col_space * 0.5 + (star_col_space * i) + cos(angle) * star_line_radius, star_offset_y + star_row_space * 0.5 + (star_row_space * j) + sin(angle) * star_line_radius);
+      }
+    }
+  }
+
+
 
   // star ----- end ------------------------------
 
