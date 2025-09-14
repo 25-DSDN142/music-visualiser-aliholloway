@@ -7,9 +7,9 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
 
     // star ----- start ------------------------------
   stroke(255);
-  strokeWeight(0.5);
+  strokeWeight(0.3);
   let star_line_radius = 0.4 * other;  // ANIMATE THIS WITH MUSIC!!!
-  let num_star_lines = 30;
+  let num_star_lines = 40;
   center_x = width * 0.5;
   center_y = height * 0.5;
 
@@ -20,6 +20,17 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   let star_row_space = height / num_star_rows;
   let star_offset_x = 85;
   let star_offset_y = 85;
+
+
+  // interpolate stars_large_color
+  let stars_large_t = constrain(other / 100, 0, 1);
+
+  // pick a darker base and a brighter glow
+  let stars_large_base_color = color('#750000ff');   // bright yellow
+  let stars_large_glow_color = color('#fab7b7ff');   // bright yellow
+
+  let stars_large_color = lerpColor(stars_large_base_color, stars_large_glow_color, stars_large_t);
+  stroke(stars_large_color);
   
   for (let i = 0; i < num_star_cols; i++) {
     for (let j = 0; j < num_star_rows; j++) {
@@ -31,6 +42,16 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
     }
   }
 
+
+  // interpolate stars_small_color
+  let stars_small_t = constrain(vocal / 100, 0, 1);
+
+  // pick a darker base and a brighter glow
+  let stars_small_base_color = color('#000275ff');   // bright yellow
+  let stars_small_glow_color = color('#b8b7faff');   // bright yellow
+
+  let stars_small_color = lerpColor(stars_small_base_color, stars_small_glow_color, stars_small_t);
+  stroke(stars_small_color);
   star_line_radius *= 0.5;
   for (let i = 0; i < num_star_cols; i++) {
     for (let j = 0; j < num_star_rows; j++) {
@@ -76,8 +97,7 @@ fill(sun_color);
   ellipse(width * 0.5, height * 0.5, sun_diameter, sun_diameter);
 
   
-
-  // bass is 0..100
+  // interpolate sunray_color
   let sunray_t = constrain(bass / 100, 0, 1);
 
   // pick a darker base and a brighter glow
@@ -88,6 +108,11 @@ fill(sun_color);
   fill(sunray_color);
 
 
+  push(); 
+  translate(width * 0.5, height * 0.5); 
+  rotate(counter * 0.0125 * map(vocal, 0, 100, 0.1, 1)); // deg per frame
+  translate(width * -0.5, height * -0.5); 
+  // draw sunrays
   for (let i = 0; i < num_sun_tris; i++) {
     sun_tri_angle = 360.0 / num_sun_tris * i;
    
@@ -96,6 +121,12 @@ fill(sun_color);
              sun_center_x + cos(sun_tri_angle + sun_tri_angle_incr) * (sun_radius + sun_tri_height), sun_center_y + sin(sun_tri_angle + sun_tri_angle_incr) * (sun_radius + sun_tri_height),
              sun_center_x + cos(sun_tri_angle + sun_tri_angle_incr * 2.0)  * sun_radius, sun_center_y + sin(sun_tri_angle + sun_tri_angle_incr * 2.0) * sun_radius);
   }
+  // draw rays here
+  pop();
+
+
+
+
   // sun ----- end -------------------------------------------------------------
 
 
@@ -117,6 +148,10 @@ fill(sun_color);
    text(words, width/2, height/2 + 10);
 
   // text lyrics ------ end ----------------------------------------
+
+
+
+
 
 
 
