@@ -8,7 +8,7 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
     // star ----- start ------------------------------
   stroke(255);
   strokeWeight(0.3);
-  let star_line_radius = 0.4 * other;  // ANIMATE THIS WITH MUSIC!!!
+  let star_large_line_radius = 0.5 * bass;  // ANIMATE THIS WITH MUSIC!!!
   let num_star_lines = 40;
   center_x = width * 0.5;
   center_y = height * 0.5;
@@ -37,7 +37,7 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
       for (let k = 0; k < num_star_lines; k++) {
         angle = 360.0 / num_star_lines * k;
         line(star_offset_x + (star_col_space * i), star_offset_y + (star_row_space * j), 
-             star_offset_x + (star_col_space * i) + cos(angle) * star_line_radius, star_offset_y + (star_row_space * j) + sin(angle) * star_line_radius);
+             star_offset_x + (star_col_space * i) + cos(angle) * star_large_line_radius, star_offset_y + (star_row_space * j) + sin(angle) * star_large_line_radius);
       }
     }
   }
@@ -52,13 +52,13 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
 
   let stars_small_color = lerpColor(stars_small_base_color, stars_small_glow_color, stars_small_t);
   stroke(stars_small_color);
-  star_line_radius *= 0.5;
+  let star_small_line_radius = 0.4 * drum;
   for (let i = 0; i < num_star_cols; i++) {
     for (let j = 0; j < num_star_rows; j++) {
       for (let k = 0; k < num_star_lines; k++) {
         angle = 360.0 / num_star_lines * k;
         line(star_offset_x + star_col_space * 0.5 + (star_col_space * i), star_offset_y + star_row_space * 0.5 + (star_row_space * j), 
-             star_offset_x + star_col_space * 0.5 + (star_col_space * i) + cos(angle) * star_line_radius, star_offset_y + star_row_space * 0.5 + (star_row_space * j) + sin(angle) * star_line_radius);
+             star_offset_x + star_col_space * 0.5 + (star_col_space * i) + cos(angle) * star_small_line_radius, star_offset_y + star_row_space * 0.5 + (star_row_space * j) + sin(angle) * star_small_line_radius);
       }
     }
   }
@@ -72,7 +72,7 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   // sun ----- start -------------------------------------------------------
   noStroke();
 
-  // bass is 0..100
+
 let bass_t = constrain(bass / 100, 0, 1);
 
 // pick a darker base and a brighter glow
@@ -83,7 +83,7 @@ let sun_color = lerpColor(sun_base_color, sun_glow_color, bass_t);
 fill(sun_color);
 
   let sun_radius = height * 0.2;
-  let sun_tri_height = Math.max(50, vocal * 2.0);     // ANIMATE THIS WITH MUSIC!!!
+  let sun_tri_height = Math.max(50, vocal * 3.0);     // ANIMATE THIS WITH MUSIC!!!
   let num_sun_tris = 50;   // controls the number of sun rays and determines how wide each triangle is
   sun_center_x = width * 0.5;
   sun_center_y = height * 0.5;
@@ -158,50 +158,5 @@ fill(sun_color);
 
 
 }
-
-
-
-
-
-/*
-
-  let bar_spacing = height / 10;
-   let bar_height = width / 12;
-   let bar_pos_x = width / 2;
- 
-// changes 
-   // vocal bar is red
-   fill(200, 0, 0);
-   rect(bar_pos_x, height / 2 + 1 * bar_spacing, 4 * vocal, bar_height);
-   fill(0);
-   text("vocals", bar_pos_x, height / 2 + 1 * bar_spacing + 8);
- 
-   // drum bar is green
-   fill(0, 200, 0);
-   rect(bar_pos_x, height / 2 + 2 * bar_spacing, 4 * drum, bar_height);
-   fill(0);
-   text("drums", bar_pos_x, height / 2 + 2 * bar_spacing + 8);
- 
-   // bass bar is blue
-   fill(50, 50, 240);
-   rect(bar_pos_x, height / 2 + 3 * bar_spacing, 4 * bass, bar_height);
-   fill(0);
-   text("bass", bar_pos_x, height / 2 + 3 * bar_spacing + 8);
- 
-   // other bar is white
-   fill(200, 200, 200);
-   rect(bar_pos_x, height / 2 + 4 * bar_spacing, 4 * other, bar_height);
-   fill(0);
-   text("other", bar_pos_x, height / 2 + 4 * bar_spacing + 8);
-   fill(255, 255, 0);
- 
-   // display "words"
-   textAlign(CENTER);
-   textSize(vocal);
-   text(words, width/2, height/3);
-
-   
-
-  */ 
 
 
