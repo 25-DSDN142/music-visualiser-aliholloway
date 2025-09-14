@@ -47,23 +47,23 @@ let sun_glow_color = color('#ffe600ff');   // bright yellow
 let sun_color = lerpColor(sun_base_color, sun_glow_color, bass_t);
 fill(sun_color);
 
-
-
-  //let sun_color = color("#ffe600ff");
-  //sun_color *= bass * 0.01;
-  //fill(sun_color);
   let sun_radius = height * 0.2;
   let sun_tri_height = Math.max(50, vocal * 2.0);     // ANIMATE THIS WITH MUSIC!!!
   let num_sun_tris = 50;   // controls the number of sun rays and determines how wide each triangle is
   sun_center_x = width * 0.5;
   sun_center_y = height * 0.5;
 
+  sun_diameter = sun_radius * 2;
+  ellipse(width * 0.5, height * 0.5, sun_diameter, sun_diameter);
 
-  ellipse(width * 0.5, height * 0.5, sun_radius * 2.0, sun_radius * 2.0);
+  // sun drum animation
+  fill(sun_color, drum * (255 / 100))
+  sun_diameter = sun_radius * 2 * drum * 0.005 + 350;
+  ellipse(width * 0.5, height * 0.5, sun_diameter, sun_diameter);
 
+  
 
-
-  // drum is 0..100
+  // bass is 0..100
   let sunray_t = constrain(bass / 100, 0, 1);
 
   // pick a darker base and a brighter glow
@@ -86,6 +86,23 @@ fill(sun_color);
 
 
 
+  // text lyrics ----- start ---------------------------------------------
+    // drum is 0..100
+  let lyrics_t = constrain(vocal / 100, 0, 1);
+
+  // pick a darker base and a brighter glow
+  let lyrics_base_color = color('#755600ff');   // bright yellow
+  let lyrics_glow_color = color('#ffd993ff');   // bright yellow
+
+  let lyrics_color = lerpColor(lyrics_base_color, lyrics_glow_color, lyrics_t);
+  fill(lyrics_color); 
+  
+  // display "words"
+   textAlign(CENTER);
+   textSize(vocal);
+   text(words, width/2, height/2 + 10);
+
+  // text lyrics ------ end ----------------------------------------
 
 
 
