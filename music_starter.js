@@ -38,14 +38,14 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   noStroke();
 
   // bass is 0..100
-let t = constrain(bass / 100, 0, 1);
+let bass_t = constrain(bass / 100, 0, 1);
 
 // pick a darker base and a brighter glow
-let base = color('#83690dff');   // warm yellow
-let glow = color('#ffe600ff');   // bright yellow
+let sun_base_color = color('#83690dff');   // warm yellow
+let sun_glow_color = color('#ffe600ff');   // bright yellow
 
-let sunColor = lerpColor(base, glow, t);
-fill(sunColor);
+let sun_color = lerpColor(sun_base_color, sun_glow_color, bass_t);
+fill(sun_color);
 
 
 
@@ -53,13 +53,25 @@ fill(sunColor);
   //sun_color *= bass * 0.01;
   //fill(sun_color);
   let sun_radius = height * 0.2;
-  let sun_tri_height = 100;     // ANIMATE THIS WITH MUSIC!!!
+  let sun_tri_height = Math.max(50, vocal * 2.0);     // ANIMATE THIS WITH MUSIC!!!
   let num_sun_tris = 50;   // controls the number of sun rays and determines how wide each triangle is
   sun_center_x = width * 0.5;
   sun_center_y = height * 0.5;
 
 
   ellipse(width * 0.5, height * 0.5, sun_radius * 2.0, sun_radius * 2.0);
+
+
+
+  // drum is 0..100
+  let sunray_t = constrain(bass / 100, 0, 1);
+
+  // pick a darker base and a brighter glow
+  let sunray_base_color = color('#756a00ff');   // bright yellow
+  let sunray_glow_color = color('#faf3b7ff');   // bright yellow
+
+  let sunray_color = lerpColor(sunray_base_color, sunray_glow_color, sunray_t);
+  fill(sunray_color);
 
 
   for (let i = 0; i < num_sun_tris; i++) {
