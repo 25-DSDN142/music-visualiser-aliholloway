@@ -3,7 +3,39 @@
 function draw_one_frame(words, vocal, drum, bass, other, counter) {
    
   background("#0C1713");
+
+
+  // star -----------------------------------
+  stroke(255);
+  strokeWeight(2);
+  let star_line_radius = 20; 
+  let num_star_lines = 20;
+  center_x = width * 0.5;
+  center_y = height * 0.5;
+
+  for (let i = 0; i < num_star_lines; i++) {
+    angle = 360.0 / num_star_lines * i;
+    line(center_x, center_y, center_x + cos(angle) * star_line_radius, center_y + sin(angle) * star_line_radius);
+  }
+
+  //-----------------------------------------------
   
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+/*
+
   let bar_spacing = height / 10;
    let bar_height = width / 12;
    let bar_pos_x = width / 2;
@@ -41,7 +73,7 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
 
    
 
-   
+  */ 
 
 }
 
