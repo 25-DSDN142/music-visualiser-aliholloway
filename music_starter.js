@@ -5,6 +5,41 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
    
   background("#0C1713");
 
+
+    // star ----- start ------------------------------
+  stroke(255);
+  strokeWeight(2);
+  let star_line_radius = 20;
+  let num_star_lines = 20;
+  center_x = width * 0.5;
+  center_y = height * 0.5;
+
+  let num_star_cols = 10;
+  let num_star_rows = 6;
+
+  let star_col_space = width / num_star_cols;
+  let star_row_space = height / num_star_rows;
+  let star_offset_x = 75;
+  let star_offset_y = 65;
+  
+  for (let i = 0; i < num_star_cols; i++) {
+    for (let j = 0; j < num_star_rows; j++) {
+      for (let k = 0; k < num_star_lines; k++) {
+        angle = 360.0 / num_star_lines * k;
+        line(star_line_radius + star_offset_x + (star_col_space * i), star_line_radius + star_offset_y + (star_row_space * j), 
+             star_line_radius + star_offset_x + (star_col_space * i) + cos(angle) * star_line_radius, star_line_radius + star_offset_y + (star_row_space * j) + sin(angle) * star_line_radius);
+      }
+    }
+  }
+  // star ----- end ------------------------------
+
+
+  
+
+
+
+
+
   // sun ----- start -------------------------------------------------------
   noStroke();
   fill("#ffe600ff");
@@ -31,19 +66,7 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
 
 
 
-  // star -----------------------------------
-  stroke(255);
-  strokeWeight(2);
-  let star_line_radius = 20;
-  let num_star_lines = 20;
-  center_x = width * 0.5;
-  center_y = height * 0.5;
 
-
-  for (let i = 0; i < num_star_lines; i++) {
-    angle = 360.0 / num_star_lines * i;
-    line(center_x, center_y, center_x + cos(angle) * star_line_radius, center_y + sin(angle) * star_line_radius);
-  }
 
 
 
