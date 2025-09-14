@@ -1,15 +1,14 @@
-
-
 // vocal, drum, bass, and other are volumes ranging from 0 to 100
 function draw_one_frame(words, vocal, drum, bass, other, counter) {
-   
+  
+  
   background("#0C1713");
 
 
     // star ----- start ------------------------------
   stroke(255);
-  strokeWeight(2);
-  let star_line_radius = 20;
+  strokeWeight(0.5);
+  let star_line_radius = 10;  // ANIMATE THIS WITH MUSIC!!!
   let num_star_lines = 20;
   center_x = width * 0.5;
   center_y = height * 0.5;
@@ -34,16 +33,26 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   // star ----- end ------------------------------
 
 
-  
-
-
-
-
 
   // sun ----- start -------------------------------------------------------
   noStroke();
-  fill("#ffe600ff");
-  let sun_radius = height * 0.33;
+
+  // bass is 0..100
+let t = constrain(bass / 100, 0, 1);
+
+// pick a darker base and a brighter glow
+let base = color('#83690dff');   // warm yellow
+let glow = color('#ffe600ff');   // bright yellow
+
+let sunColor = lerpColor(base, glow, t);
+fill(sunColor);
+
+
+
+  //let sun_color = color("#ffe600ff");
+  //sun_color *= bass * 0.01;
+  //fill(sun_color);
+  let sun_radius = height * 0.2;
   let sun_tri_height = 100;     // ANIMATE THIS WITH MUSIC!!!
   let num_sun_tris = 50;   // controls the number of sun rays and determines how wide each triangle is
   sun_center_x = width * 0.5;
