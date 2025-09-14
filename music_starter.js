@@ -8,8 +8,8 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
     // star ----- start ------------------------------
   stroke(255);
   strokeWeight(0.5);
-  let star_line_radius = 10;  // ANIMATE THIS WITH MUSIC!!!
-  let num_star_lines = 20;
+  let star_line_radius = 0.4 * other;  // ANIMATE THIS WITH MUSIC!!!
+  let num_star_lines = 30;
   center_x = width * 0.5;
   center_y = height * 0.5;
 
@@ -18,18 +18,20 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
 
   let star_col_space = width / num_star_cols;
   let star_row_space = height / num_star_rows;
-  let star_offset_x = 75;
-  let star_offset_y = 65;
+  let star_offset_x = 85;
+  let star_offset_y = 85;
   
   for (let i = 0; i < num_star_cols; i++) {
     for (let j = 0; j < num_star_rows; j++) {
       for (let k = 0; k < num_star_lines; k++) {
         angle = 360.0 / num_star_lines * k;
-        line(star_line_radius + star_offset_x + (star_col_space * i), star_line_radius + star_offset_y + (star_row_space * j), 
-             star_line_radius + star_offset_x + (star_col_space * i) + cos(angle) * star_line_radius, star_line_radius + star_offset_y + (star_row_space * j) + sin(angle) * star_line_radius);
+        line(star_offset_x + (star_col_space * i), star_offset_y + (star_row_space * j), 
+             star_offset_x + (star_col_space * i) + cos(angle) * star_line_radius, star_offset_y + (star_row_space * j) + sin(angle) * star_line_radius);
       }
     }
   }
+
+
   // star ----- end ------------------------------
 
 
