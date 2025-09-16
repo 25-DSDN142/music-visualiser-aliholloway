@@ -43,7 +43,7 @@ function songLoadedSoFar(soFar) {
 
 function preload() {
   table = loadTable('volumes.csv', 'csv');
-  words = loadStrings('words2.txt');
+  words = loadStrings('wordsFinal_6.txt');
 }
 
 let volumes = [];
